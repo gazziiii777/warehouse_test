@@ -34,7 +34,7 @@ def get_products(db: Session = Depends(get_db)):
 def get_product(id: int, db: Session = Depends(get_db)):
     db_product = db.query(models.Product).filter(models.Product.id == id).first()
     if db_product is None:
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(status_code=404, detail="Product не найден")
     return db_product
 
 
@@ -42,7 +42,7 @@ def get_product(id: int, db: Session = Depends(get_db)):
 def update_product(id: int, product: schemas.ProductCreate, db: Session = Depends(get_db)):
     db_product = db.query(models.Product).filter(models.Product.id == id).first()
     if db_product is None:
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(status_code=404, detail="Product не найден")
 
     for key, value in product.dict().items():
         setattr(db_product, key, value)
@@ -56,8 +56,10 @@ def update_product(id: int, product: schemas.ProductCreate, db: Session = Depend
 def delete_product(id: int, db: Session = Depends(get_db)):
     db_product = db.query(models.Product).filter(models.Product.id == id).first()
     if db_product is None:
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(status_code=404, detail="Product не найден")
 
     db.delete(db_product)
     db.commit()
-    return {"detail": "Product deleted"}
+    return {"detail": "Product удален"}
+
+
