@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import database
-from products import router as products_router
-from orders import router as orders_router
+from app.api_v1.products import router as products_router
+from app.api_v1.orders import router as orders_router
 
 database.Base.metadata.drop_all(bind=database.engine)
 database.Base.metadata.create_all(bind=database.engine)
