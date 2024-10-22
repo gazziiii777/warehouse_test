@@ -1,5 +1,3 @@
-# app/products.py
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app import models, database, schemas
@@ -61,5 +59,3 @@ def delete_product(id: int, db: Session = Depends(get_db)):
     db.delete(db_product)
     db.commit()
     return {"detail": "Product удален"}
-
-
