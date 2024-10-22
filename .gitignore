@@ -1,4 +1,6 @@
 .venv/
 __pycache__/
 .idea/
-app/test.db
+app/warehouse.db
+app/tests/warehouse.db
+warehouse.db
